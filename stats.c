@@ -1,7 +1,6 @@
 #include "stats.h"
 #include <math.h>
-typedef void (*alerter_funcptr)();
-alerter_funcptr (*alerters[])(void)={emailAlerter,ledAlerter};
+
 
 struct Stats compute_statistics(const float* numberset, int setlength) {
     int i;
