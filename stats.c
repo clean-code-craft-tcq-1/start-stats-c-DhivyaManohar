@@ -6,7 +6,7 @@ struct Stats compute_statistics(const float* numberset, int setlength) {
     float max;
     int i;
     float t1, t2;
-    double total, retval;
+    float total, retval;
     total = 0;
     for(i=0; i <=setlength; i++)
     {
@@ -25,7 +25,8 @@ struct Stats compute_statistics(const float* numberset, int setlength) {
     }
         min = t2;
         max = t1;   
-}computedStats;
+};
+
 
 int emailAlertCallCount = 0;
 int ledAlertCallCount = 0;
