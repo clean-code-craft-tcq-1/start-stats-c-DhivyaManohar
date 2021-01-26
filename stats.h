@@ -5,10 +5,12 @@ struct Stats{
     float max;
  };
 struct Stats compute_statistics(const float* numberset, int setlength);
-typedef void (*alerter_funcptr)();
-alerter_funcptr (*alerters[])(void)={emailAlerter,ledAlerter};
-int emailAlerter;
-int ledAlerter;
+typedef void (*alerter_funcptr alerter[]) = {
+  alerters[2];
+  alerters[0] = emailAlerter;
+  alerters[1]= ledAlerter;
+ };
+//alerter_funcptr (*alerters[])(void)={emailAlerter,ledAlerter};
 void check_and_alert(float maxThreshold, alerter_funcptr alerters[], struct Stats computedStats);
 //void ledAlerter;
 //void emailAlerter;
