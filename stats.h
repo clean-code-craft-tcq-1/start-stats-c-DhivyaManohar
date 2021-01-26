@@ -9,9 +9,7 @@ struct Stats compute_statistics(const float* numberset, int setlength);
 
 
 typedef void (*alerter_funcptr)();
-alerter_funcptr (*alerters[2])();
-alerter_funcptr alerters[0]=emailAlerter;
-alerter_funcptr alerters[1]=ledAlerter;
+alerter_funcptr (*alerters[2])()={emailAlerter,ledAlerter};
 void check_and_alert(float maxThreshold, alerter_funcptr alerters[], struct Stats computedStats);
 void ledAlerter_fn();
 void emailAlerter_fn();
