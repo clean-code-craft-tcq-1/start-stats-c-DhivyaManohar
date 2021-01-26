@@ -29,13 +29,12 @@ struct Stats compute_statistics(const float* numberset, int setlength) {
 void check_and_alert(float maxThreshold, alerter_funcptr alerters[], struct Stats s)
     
 {
-alerter_funcptr alerters[] = {emailAlerter, ledAlerter};
     if(s.max > maxThreshold)
     { 
-  emailAlerter= &emailAlerter_fn;
-        emailAlerter();
-  ledAlerter= &ledAlerter_fn;
-        ledAlerter();
+  alerters[0]= &emailAlerter_fn;
+        alerters[0]();
+  alerters[1]= &ledAlerter_fn;
+        alerters[1]();
     }
 }
 void emailAlerter_fn()
