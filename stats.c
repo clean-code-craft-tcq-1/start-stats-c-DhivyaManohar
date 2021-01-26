@@ -12,7 +12,7 @@ struct Stats compute_statistics(const float* numberset, int setlength) {
     {
     total = total + numberset[i];
     }
-    retval = total\setlength;
+    retval = total/setlength;
     average = retval;   
     for(i=0; i<=setlength; i++)
     {
@@ -25,7 +25,7 @@ struct Stats compute_statistics(const float* numberset, int setlength) {
     }
         min = t2;
         max = t1;   
-};
+}
 
 
 int emailAlertCallCount = 0;
