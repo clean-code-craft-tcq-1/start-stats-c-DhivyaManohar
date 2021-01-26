@@ -1,19 +1,18 @@
 #include "stats.h"
 
 struct Stats compute_statistics(const float* numberset, int setlength) {
-    float average;
-    float min;
-    float max;
-    int i;
+      int i;
     float t1, t2;
     float total, retval;
     total = 0;
+    
+    struct Stats computedStats;
     for(i=0; i <=setlength; i++)
     {
     total = total + numberset[i];
     }
     retval = total/setlength;
-    average = retval;   
+    computedStats.average = retval;   
     for(i=0; i<=setlength; i++)
     {
         if(numberset[i] < numberset[i+1])
@@ -23,8 +22,9 @@ struct Stats compute_statistics(const float* numberset, int setlength) {
         }
             
     }
-        min = t2;
-        max = t1;   
+       computedStats.min = t2;
+       computedStats.max = t1;   
+    retrurn computedStats;
 }
 
 
