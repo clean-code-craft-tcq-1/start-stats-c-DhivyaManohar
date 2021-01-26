@@ -1,5 +1,6 @@
 #include "stats.h"
 #include <math.h>
+#ifdef NAN
 
 struct Stats compute_statistics(const float* numberset, int setlength) {
     int i;
@@ -17,6 +18,8 @@ struct Stats compute_statistics(const float* numberset, int setlength) {
    if (setlength == 0)
    {
        s.average = NAN;
+       s.min = NAN;
+       s.max = NAN;
    }
     for(i=0; i<=setlength; i++)
     {
@@ -36,17 +39,17 @@ void check_and_alert(float maxThreshold, alerter_funcptr alerters[], struct Stat
 {
     if(computedStats.max > maxThreshold)
     { 
-  alerters[0]= &emailAlerter;
-        alerters[0]();
-  alerters[1]= &ledAlerter;
-        alerters[1]();
+  alerters[0]= &emailAlerter_fn;
+        (*alerters[0])();
+  alerters[1]= &ledAlerter_fn;
+        (*alerters[1])();
     }
 }
-void emailAlerter()
+void emailAlerter_fn()
 {
     emailAlertCallCount =1;
 }
-void ledAlerter()
+void ledAlerter_fn()
 {
     ledAlertCallCount  =1;
 }
