@@ -1,4 +1,5 @@
 #include "stats.h"
+#include <math.h>
 
 struct Stats compute_statistics(const float* numberset, int setlength) {
     int i;
@@ -12,7 +13,11 @@ struct Stats compute_statistics(const float* numberset, int setlength) {
     total = total + numberset[i];
     }
     retval = total/setlength;
-    s.average = retval;   
+    s.average = retval; 
+   if (setlength == 0)
+   {
+       s.average =  NaN;
+   }
     for(i=0; i<=setlength; i++)
     {
         if(numberset[i] < numberset[i+1])
@@ -26,10 +31,10 @@ struct Stats compute_statistics(const float* numberset, int setlength) {
        s.max = t1;   
     return s;
 }
-void check_and_alert(float maxThreshold, alerter_funcptr alerters[], struct Stats s)
+void check_and_alert(float maxThreshold, alerter_funcptr alerters[], struct Stats computedStats)
     
 {
-    if(s.max > maxThreshold)
+    if(computedStats.max > maxThreshold)
     { 
   alerters[0]= &emailAlerter_fn;
         alerters[0]();
