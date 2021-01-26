@@ -1,6 +1,7 @@
 #include "stats.h"
 #include <math.h>
-
+typedef void (*alerter_funcptr)();
+alerter_funcptr (*alerters[])(void)={emailAlerter,ledAlerter};
 
 struct Stats compute_statistics(const float* numberset, int setlength) {
     int i;
@@ -37,8 +38,7 @@ struct Stats compute_statistics(const float* numberset, int setlength) {
 void check_and_alert(float maxThreshold, alerter_funcptr alerters[], struct Stats computedStats)
     
 {
-typedef void (*alerter_funcptr)();
-alerter_funcptr (*alerters[])(void)={emailAlerter,ledAlerter};
+
     if(computedStats.max > maxThreshold)
     { 
 //  alerters[0]= &emailAlerter_fn;
