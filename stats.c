@@ -16,7 +16,7 @@ struct Stats compute_statistics(const float* numberset, int setlength) {
     s.average = retval; 
    if (setlength == 0)
    {
-       s.average =  NaN;
+       s.average = NAN;
    }
     for(i=0; i<=setlength; i++)
     {
