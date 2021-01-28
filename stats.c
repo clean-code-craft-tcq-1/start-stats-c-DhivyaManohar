@@ -40,11 +40,11 @@ void check_and_alert(float maxThreshold, alerter_funcptr alerters[], struct Stat
 
     if(computedStats.max > maxThreshold)
     { 
-//  alerters[0]= &emailAlerter_fn;
-       // (*alerters[0])();
-//  alerters[1]= &ledAlerter_fn;
-        //(*alerters[1])();
-        alerter_funcptr alerters[2] = {&emailAlerter,&ledAlerter};
+  alerters[0]= &emailAlerter;
+       (*alerters[0])();
+ alerters[1]= &ledAlerter;
+        (*alerters[1])();
+        //alerter_funcptr alerters[2] = {&emailAlerter,&ledAlerter};
     }
 }
 int emailAlerter()
